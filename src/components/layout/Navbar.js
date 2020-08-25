@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Navbar extends Component {
+    // default props
   static defaultProps = {
     title: ' Github Finder',
     icon: 'fab fa-github',
   };
 
-  static PropTypes = {
+//   propTypes are basically type checking
+  static propTypes = {
     title: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
   };
