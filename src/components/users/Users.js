@@ -1,10 +1,10 @@
 import React from 'react';
 import UserItem from './UserItem';
 import Spinner from '../layout/Spinner';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 const Users = (props) => {
-  // const Users = ({users, loading}) =>  {
+// const Users = ({ users, loading }) => {
   if (props.loading) {
     return <Spinner />;
   } else {
@@ -19,9 +19,9 @@ const Users = (props) => {
   }
 };
 Users.propTypes = {
-  user: PropTypes.array.isRequired,
-  laoding: PropTypes.bool.isRequired,
-}
+  users: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
+};
 const userStyle = {
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',
