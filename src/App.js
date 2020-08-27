@@ -5,11 +5,13 @@ import Users from './components/users/Users';
 import Search from './components/users/Search';
 import axios from 'axios';
 import './App.css';
+import Alert from './components/layout/Alert';
 
 class App extends Component {
   state = {
     users: [],
     loading: false,
+    alert: null,
   };
   // async componentDidMount() {
   //   // console.log(process.env.REACT_APP_GITHUB_CLIENT_SECRET);
@@ -46,16 +48,24 @@ class App extends Component {
     });
   };
 
+  // Set Alert
+  setAlert = (msg, type) => {
+    this.setState({ alert: { msg: msg, type: type } });
+    setTimeout(() => this.setState({ alert: null }), 2000);
+  };
+
   render() {
     // const { users, loading } = this.state;
     return (
       <div className="App">
         <Navbar />
         <div className="container">
+          <Alert alert={this.state.alert} />
           <Search
             searchUsers={this.searchUsers}
             clearUsers={this.clearUsers}
             showClear={this.state.users.length > 0 ? true : false}
+            setAlert={this.setAlert}
           />
           <Users loading={this.state.loading} users={this.state.users} />
         </div>
