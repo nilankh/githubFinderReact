@@ -13,7 +13,7 @@ const Search = (props) => {
       props.setAlert('Please Enter Something', 'light');
     } else {
       props.searchUsers(text);
-      setText({ text: '' });
+      setText('');
     }
   };
 
@@ -26,7 +26,7 @@ const Search = (props) => {
           type="text"
           name="text"
           placeholder="Search Users..."
-          value={props.text}
+          value={text}
           onChange={onChange}
         />
         <input
