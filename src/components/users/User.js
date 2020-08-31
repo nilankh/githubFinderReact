@@ -10,8 +10,9 @@ const User = (props) => {
   useEffect(() => {
     props.getUser(props.match.params.login);
     props.getUserRepos(props.match.params.login);
-  // eslint-disable-next-line
+    // eslint-disable-next-line(ye line q add kia h q ki ye ek warning show krega React Hook useEffect has missing dependcies krke toa ye line use krna comment me krke)
   }, []);
+  // ye empty set of array islia add kia h taaki ye infite loop ne na fasa reh jye
 
   const {
     name,
