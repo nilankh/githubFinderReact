@@ -1,19 +1,21 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useContext } from 'react';
 import Spinner from '../layout/Spinner';
+import Repos from '../repos/Repos';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Repos from '../repos/Repos';
+import GithubContext from '../../context/github/githubContext';
 
-const User = (props) => {
-  // const User = ({user, loading, getUser, getUserRepos, repos, match}) => {
+const User = ({ getUserRepos, repos, match }) => {
+  const githubContext = useContext(GithubContext);
+
+  const { getUser, loading, user } = githubContext;
 
   useEffect(() => {
-    props.getUser(props.match.params.login);
-    props.getUserRepos(props.match.params.login);
+    getUser(match.params.login);
+    getUserRepos(match.params.login);
     // eslint-disable-next-line(ye line q add kia h q ki ye ek warning show krega React Hook useEffect has missing dependcies krke toa ye line use krna comment me krke)
   }, []);
   // ye empty set of array islia add kia h taaki ye infite loop ne na fasa reh jye
-
   const {
     name,
     avatar_url,
@@ -28,9 +30,8 @@ const User = (props) => {
     public_repos,
     public_gists,
     hireable,
-  } = props.user;
+  } = user;
 
-  const { loading, repos } = props;
   if (loading) return <Spinner />;
 
   return (
@@ -107,10 +108,8 @@ const User = (props) => {
 };
 
 User.propTypes = {
-  loading: PropTypes.bool.isRequired,
-  user: PropTypes.object.isRequired,
   repos: PropTypes.array.isRequired,
-  getUser: PropTypes.func.isRequired,
+
   getUserRepos: PropTypes.func.isRequired,
 };
 
